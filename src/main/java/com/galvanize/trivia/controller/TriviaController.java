@@ -1,20 +1,27 @@
 package com.galvanize.trivia.controller;
 
-import com.galvanize.trivia.controller.entity.Question;
+import java.util.List;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.galvanize.trivia.controller.entity.Question;
+import com.galvanize.trivia.service.TriviaService;
 
 @RestController
 @RequestMapping("/api/v1/trivia")
 public class TriviaController {
+	
+	private TriviaService triviaService;
+	
+	public TriviaController(TriviaService triviaService) {
+		this.triviaService = triviaService;
+	}
 
     @GetMapping
     public List<Question> getAllTriviaQuestions() {
-        return new ArrayList<>();
+        return triviaService.getAllTrivia();
 
     }
 }
