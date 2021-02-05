@@ -4,6 +4,7 @@
 FROM openjdk:11.0-jdk-slim as builder
 VOLUME /tmp
 COPY . .
+RUN sed -i.bak 's/\r$//g' ./gradlew
 RUN ./gradlew build
 
 # Phase 2 - Build container with runtime only to use .jar file within
